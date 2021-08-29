@@ -6,40 +6,48 @@ Hero::Hero()
 Hero::~ Hero()
 {
 }
-void Hero::init(std::string textureName, sf::Vector2f position, float mass)
+void Hero::init(std::string texture_name, sf::Vector2f position, float speed)
 {
     m_position = position;
-    m_mass = mass;
-    m_grounded = false;
+    m_speed = speed;
     // Load a Texture
-    m_texture.loadFromFile(textureName.c_str());
+    m_texture.loadFromFile(texture_name.c_str());
     // Create Sprite and Attach a Texture
     m_sprite.setTexture(m_texture);
     m_sprite.setPosition(m_position);
     m_sprite.setOrigin(m_texture.getSize().x / 2, m_texture.getSize().y / 2);
     m_sprite.setScale(4, 4);
+    m_rot = 'S';
+    m_x = 0;
+    m_y = 0;
 }
 
 void Hero::update(float dt) {
-    m_force -= m_mass * m_gravity * dt;
-    m_position.y -= m_force * dt;
-    m_sprite.setPosition(m_position);
-    if (m_position.y >= 768 * 0.75f)
-    {
-        m_position.y = 768 * 0.75f;
-        m_force = 0;
-        m_grounded = true;
-        jump_count = 0;
-    }
+    walk(dt);
 }
-void Hero::jump(float velocity)
-{
-    if (jump_count < 2)
-    {
-        jump_count++;
-        m_velocity = velocity;
-        m_grounded = false;
+
+void Hero::walk(float _dt) {
+    if(m_rot == 'S') {
+        m_y = 0;
+        m_x = 0;
     }
+
+    if (m_rot == 'U')
+        m_y = -1 * m_speed * _dt;
+    if (m_rot == 'D')
+        m_y = m_speed * _dt;
+    if (m_rot == 'L')
+        m_x = -1 * m_speed * _dt;
+    if (m_rot == 'R')
+        m_x = m_speed * _dt;
+
+    
+    m_sprite.move(m_x, m_y);
+}
+void Hero::move(char rot)
+{
+    
+    m_rot = rot;
 }
 
 sf::Sprite Hero::getSprite()

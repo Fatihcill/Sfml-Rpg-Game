@@ -1,24 +1,16 @@
 #include "SFML/Graphics.hpp"
 
-class Hero
-{
+class Enemy{
     public:
-        Hero();
-        ~Hero();
+        Enemy();
+        ~Enemy();
         void init(std::string texture_name, sf::Vector2f position, float _speed);
         void update(float dt);
-        void move(char rot);
         sf::Sprite getSprite();
 
-    protected:
-        void walk(float _dt);
     private:
-
         sf::Texture m_texture;
         sf::Sprite m_sprite;
         sf::Vector2f m_position;
         float m_speed;
-        float m_velocity;
-        char m_rot;
-        float m_x, m_y;
 };

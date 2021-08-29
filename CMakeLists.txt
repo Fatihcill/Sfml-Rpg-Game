@@ -37,7 +37,7 @@ configure_file(include/config.h.in config.h)
 find_package(SFML 2.5 COMPONENTS system window graphics audio REQUIRED)
 
 # Compile executable
-add_executable(FirstGame src/main.cpp src/Hero.cpp)
+add_executable(FirstGame src/main.cpp src/Hero.cpp src/Enemy.cpp)
 
 # Set include directory search paths
 target_include_directories(FirstGame
