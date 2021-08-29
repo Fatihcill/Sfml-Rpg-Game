@@ -9,6 +9,8 @@ class Hero
         void update(float dt);
         void move(char rot);
         sf::Sprite getSprite();
+        float m_x, m_y;
+        float m_speed;
 
     protected:
         void walk(float _dt);
@@ -17,8 +19,6 @@ class Hero
         sf::Texture m_texture;
         sf::Sprite m_sprite;
         sf::Vector2f m_position;
-        float m_speed;
         float m_velocity;
         char m_rot;
-        float m_x, m_y;
 };
