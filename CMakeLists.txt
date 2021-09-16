@@ -37,7 +37,7 @@ configure_file(include/config.h.in config.h)
 find_package(SFML 2.5 COMPONENTS system window graphics audio REQUIRED)
 
 # Compile executable
-add_executable(FirstGame src/main.cpp src/Hero.cpp src/Enemy.cpp)
+add_executable(FirstGame src/main.cpp src/Game.cpp src/States/State.cpp src/States/GameState.cpp src/Hero.cpp src/Enemy.cpp src/Core/VectorMath.cpp src/Entities/Entity.cpp src/Entities/MovementComponent.cpp)
 
 # Set include directory search paths
 target_include_directories(FirstGame
@@ -54,7 +54,7 @@ set_target_properties(FirstGame
   )
 
 # Link executable to required SFML modules
-target_link_libraries(FirstGame sfml-graphics)
+target_link_libraries(FirstGame sfml-graphics sfml-audio)
 
 # Set executable install location
 install(TARGETS FirstGame DESTINATION bin)
