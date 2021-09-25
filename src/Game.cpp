@@ -4,6 +4,7 @@ Game::Game()
 {
     this->initWindow();
     this->initStates();
+    this->initKeys();
 }
 
 Game::~Game() 
@@ -111,7 +112,30 @@ void Game::initWindow()
 
 }
 
+void Game::initKeys()
+{
+    std::ifstream ifs("../config/supported_keys.ini");
+    if (ifs.is_open())
+    {
+        std::string key = "";
+        int key_value = 0;
+    
+        while(ifs >> key >> key_value)
+        {
+            this->supportedKeys[key] = key_value;
+        } 
+    }
+    ifs.close();
+    
+    //DEBUG
+    for (auto i : this->supportedKeys)
+    {
+        std::cout << i.first << " " << i.second << std::endl;
+    }
+    
+}
+
 void Game::initStates() 
 {
-    this->states.push(new GameState(this->window)); 
+    this->states.push(new GameState(this->window, &this->supportedKeys)); 
 }

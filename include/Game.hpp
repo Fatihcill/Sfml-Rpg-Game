@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "stdafx.hpp"
-#include "States/GameState.hpp"
+#include "GameState.hpp"
 
 class Game 
 {
@@ -13,9 +13,14 @@ private:
     float dt;
 
     std::stack<State*> states;
+
+    
+    std::map<std::string, int> supportedKeys;
+
     //Initialization
     void initWindow();
     void initStates();
+    void initKeys();
 
 public:
     Game();

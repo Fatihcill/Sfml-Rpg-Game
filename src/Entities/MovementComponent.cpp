@@ -1,5 +1,5 @@
 #include "stdafx.hpp"
-#include "Entities/MovementComponent.hpp"
+#include "MovementComponent.hpp"
 
 MovementComponent::MovementComponent(sf::Sprite& sprite, 
 	float maxVelocity, float acceleration, float deceleration)

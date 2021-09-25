@@ -1,5 +1,5 @@
 #include "stdafx.hpp"
-#include "Core/VectorMath.hpp"
+#include "VectorMath.hpp"
 
 const float vectorDistance(const float x1, const float y1, const float x2, const float y2)
 {

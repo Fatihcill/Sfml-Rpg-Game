@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
 # Set project name and version
-project(Pong VERSION 0.1)
+project(RPGgame VERSION 0.1)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 11)
@@ -31,33 +31,36 @@ else()
 endif()
 
 # Generate config.h
-configure_file(include/config.h.in config.h)
+configure_file(config/config.h.in config.h)
 
 # Find SFML shared libraries
 find_package(SFML 2.5 COMPONENTS system window graphics audio REQUIRED)
 
 # Compile executable
-add_executable(FirstGame src/main.cpp src/Game.cpp src/States/State.cpp src/States/GameState.cpp src/Hero.cpp src/Enemy.cpp src/Core/VectorMath.cpp src/Entities/Entity.cpp src/Entities/MovementComponent.cpp)
+add_executable(RPGgame src/main.cpp src/Game.cpp src/States/State.cpp src/States/GameState.cpp src/Hero.cpp src/Enemy.cpp src/Core/VectorMath.cpp src/Entities/Entity.cpp src/Entities/MovementComponent.cpp)
 
 # Set include directory search paths
-target_include_directories(FirstGame
+target_include_directories(RPGgame
   PRIVATE
     "${PROJECT_BINARY_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/Core"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/Entities"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/States"
   )
 
 # Set executable RPATH
-set_target_properties(FirstGame
+set_target_properties(RPGgame
   PROPERTIES
       INSTALL_RPATH
         "${CMAKE_INSTALL_PREFIX}/lib"
   )
 
 # Link executable to required SFML modules
-target_link_libraries(FirstGame sfml-graphics sfml-audio)
+target_link_libraries(RPGgame sfml-graphics sfml-audio)
 
 # Set executable install location
-install(TARGETS FirstGame DESTINATION bin)
+install(TARGETS RPGgame DESTINATION bin)
 
 # Set install location for resources
 install(DIRECTORY assets
